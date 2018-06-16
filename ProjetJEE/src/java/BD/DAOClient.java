@@ -1,0 +1,69 @@
+
+package BD;
+import Beans.Client;
+import java.sql.*;
+
+public class DAOClient {
+    
+    //Fonction qui transform un bean Client en un Client de BD
+    public static boolean TransformClient(Client c){
+        if(CheckBD(c.getNom(),c.getPrenom()) == true){                          //Si le client existe déjà
+            return false;                                                       //Quitte la fonction
+        }
+        AddClientBD(c);
+        
+        return true;
+    }
+    
+    //Fonction qui vérifie si le client n'existe pas déjà
+    public static boolean CheckBD(String nom, String prenom){
+        boolean b = false;
+        String requete = "Select * FROM JEECLIENT WHERE NOM = '"+nom+"' AND PRENOM = '"+prenom+"'";
+        ResultSet result = BD.FaireRequete(requete);
+        try{
+            while(result.next()){
+                b = true;
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        CloseBD();
+        return b;
+    }
+    
+    //Fonction qui ajoute un client à la BD
+    private static void AddClientBD(Client c){
+        String requete = "INSERT INTO JEECLIENT (NOM,PRENOM,ADRESSE,TELEPHONE,MAIL)"
+                + " VALUES ('"+c.getNom()+"','"+c.getPrenom()+"','"+c.getAdresse()+"','"+c.getTelephone()+"','"+c.getEmail()+"')";
+        ResultSet result = BD.FaireRequete(requete);
+        CloseBD();
+    }
+    
+    //Fonction qui crée un Bean Client en le copiant depuis la Base de Donnée
+    public static Client GetClient(String nom, String prenom){
+        Client client = new Client();
+        String requete = "Select * FROM JEECLIENT WHERE NOM = '"+nom+"' AND PRENOM = '"+prenom+"'";
+        ResultSet result = BD.FaireRequete(requete);
+        try{
+            result.next();
+            client.setNom(result.getString("NOM"));
+            client.setPrenom(result.getString("PRENOM"));
+            client.setAdresse(result.getString("ADRESSE"));
+            client.setTelephone(result.getString("TELEPHONE"));
+            client.setEmail(result.getString("MAIL"));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        CloseBD();
+        return client;
+    }
+    
+    //Fonction qui ferme la connection
+    private static void CloseBD(){
+        try{
+            BD.CloseConnection();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+}
