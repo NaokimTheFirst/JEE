@@ -14,16 +14,38 @@
     <body>
     <!-- Navigation -->
     <jsp:include page="Header.jsp" />
-    
+    <div class="container">
+        <div class="col-lg-9">
         <%-- Affichage de la chaîne "message" transmise par la servlet --%>
-        <p class="info">${ message }</p>
+        <h4>${ message }</h4>
+        
         <%-- Puis affichage des données enregistrées dans le bean "client" transmis par la servlet --%>
-        <p>Nom : ${ client.nom }</p>
-        <p>Prénom : ${ client.prenom }</p>
-        <p>Adresse : ${ client.adresse }</p>
-        <p>Numéro de téléphone : ${ client.telephone }</p>
-        <p>Email : ${ client.email }</p>
-
+        <table>
+            <tr>
+              <th>Nom :</th>
+              <td>${ client.nom }</td>
+            </tr>
+            <tr>
+              <th>Prénom :</th>
+              <td>${ client.prenom }</td>
+            </tr>
+            <tr>
+              <th>Adresse :</th>
+              <td>${ client.adresse }</td>
+            </tr>
+            <tr>
+              <th>Numéro de téléphone :</th>
+              <td>${ client.telephone }</td>
+            </tr>
+            <tr>
+              <th>Email :</th>
+              <td>${ client.email }</td>
+            </tr>
+            
+        </table>
+            <br/>
+        </div>
+    </div>
      <!-- Navigation -->
     <jsp:include page="Footer.jsp" />
     </body>

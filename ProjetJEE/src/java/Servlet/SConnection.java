@@ -38,7 +38,7 @@ public class SConnection extends HttpServlet {
         if(DAOClient.CheckBD(nom, prenom) == true){
             page ="/AffichageClient.jsp";                                       //On se redirige vers la page des informations du client
             client = DAOClient.GetClient(nom, prenom);
-            message = "Bienvenu "+client.getPrenom()+" "+client.getNom()+" !";
+            message = "Bienvenu(e) "+client.getPrenom()+" "+client.getNom()+" !";
         } else {
             page ="/Connection.jsp";
             message = "Identifiant ou Mot de Passe incorrect";
