@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Beans.Client;
+import javax.servlet.http.HttpSession;
 
 public class SConnection extends HttpServlet {
 
@@ -39,6 +40,8 @@ public class SConnection extends HttpServlet {
             page ="/AffichageClient.jsp";                                       //On se redirige vers la page des informations du client
             client = DAOClient.GetClient(nom, prenom);
             message = "Bienvenu(e) "+client.getPrenom()+" "+client.getNom()+" !";
+            HttpSession session = request.getSession();
+            session.setAttribute( "client", client );
         } else {
             page ="/Connection.jsp";
             message = "Identifiant ou Mot de Passe incorrect";

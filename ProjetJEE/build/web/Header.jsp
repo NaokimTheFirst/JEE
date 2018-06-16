@@ -1,4 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!--pour pouvoir print en faisant <c : out> -->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,15 +16,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Profil</a>
-            </li>
+            <!--Affiche l'onglet "S'inscrire" et "Se connecter" si l'utilisateur n'est pas connecté-->
+            <c:if test="${empty sessionScope.client}">
             <li class="nav-item">
                 <a class="nav-link" href="Connection.jsp">Se Connecter</a>
             </li>
             <li class="nav-item"> 
                  <a class="nav-link" href="Client.jsp">S'inscrire</a>
             </li>
+            </c:if>
+            <!--Affiche l'onglet "Profil" et "Se Déconnecter" si l'utilisateur est connecté-->
+            <c:if test="${not empty sessionScope.client}">
+                <li class="nav-item">
+                  <a class="nav-link" href="AffichageClient.jsp">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Deconnection">Se déconnecter</a>
+                </li>
+            </c:if>
           </ul>
         </div>
       </div>
