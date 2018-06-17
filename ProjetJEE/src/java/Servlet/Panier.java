@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import java.io.IOException;
@@ -11,6 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Beans.*;
+import BD.*;
+import javax.servlet.http.HttpSession;
 
 public class Panier extends HttpServlet {
 
@@ -24,10 +22,62 @@ public class Panier extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setAttribute("article", request.getParameter("article"));
+        //Si un article est envoyé par la requête
+        if(request.getParameter("article")!=null){
+            int i = Integer.parseInt(request.getParameter("article"));
+            //On récupère l'article dans la BD grâce à l'indice
+            Article article = DAOArticle.GetArticle(i);
+            //On lui donne 1 en quantité
+            AddQuantité(article, 1);
+            //On récupère le client et la commande de la Session actuelle
+            HttpSession session = request.getSession();
+            Client client = (Client) session.getAttribute("client");
+            Commande commande = (Commande) session.getAttribute("commande");
+            //Si la commande est null on en crée une
+            if(commande == null){
+                commande = new Commande();
+            }
+            //On ajoute l'article à la commande
+            AddArticle(commande, article);
+            commande.setClient(client);
+            //On redéfinit la commande de la session en cours
+            session.setAttribute("commande", commande);
+            //On redirige l'utilisateur vers le panier sans l'article en paramètre à ajouter
+            response.sendRedirect("Panier");
+            return;   
+        }
+        
+        //Si l'utilisateur veut vider le panier
+        if(request.getParameter("action")!=null && request.getParameter("action").equals("vider")){
+            System.out.println("vide");
+            HttpSession session = request.getSession();
+            session.setAttribute("commande", null);
+            //On redirige l'utilisateur vers le panier sans l'article en paramètre à ajouter
+            response.sendRedirect("Panier");
+            return;
+        }
         
         this.getServletContext().getRequestDispatcher("/Panier.jsp").forward( request, response );
         processRequest(request, response);
+    }
+    
+    //Fonction qui vérifie si l'article est déjà dans la liste et l'ajoute
+    private void AddArticle(Commande commande,Article article){
+        for(Article a :commande.getArticle()){
+            if(a.getIdarticle() == article.getIdarticle()){
+                AddQuantité(a,1);
+                commande.setMontant();
+                return;
+            }
+        }
+        commande.addArticle(article);
+        commande.setMontant();
+        return;
+    }
+    
+    //Fonction qui ajoute une certaines quantité d'article à un objet article
+    private void AddQuantité(Article a, int quantité){
+        a.setQuantité(a.getQuantité()+quantité);
     }
 
 

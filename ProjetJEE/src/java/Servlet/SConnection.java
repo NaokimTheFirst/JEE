@@ -40,7 +40,8 @@ public class SConnection extends HttpServlet {
             page ="/AffichageClient.jsp";                                       //On se redirige vers la page des informations du client
             client = DAOClient.GetClient(nom, prenom);
             message = "Bienvenu(e) "+client.getPrenom()+" "+client.getNom()+" !";
-            HttpSession session = request.getSession();
+            //On crée une session et on lui ajoute l'attribut client
+            HttpSession session = request.getSession();                         
             session.setAttribute( "client", client );
         } else {
             page ="/Connection.jsp";

@@ -18,7 +18,23 @@
     <jsp:include page="Header.jsp" />
     <div class="container">
         <div class="col-lg-9">
-        <h1>${article}</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>Article :</th><th>Description</th><th>Quantité :</th><th>Montant :</th><th>Montant Total :</th>
+                </tr>
+                <c:forEach items="${commande.article}" var="article">
+                    <tr>
+                        <td>${article.nom}</td><td>${article.description}</td><td>${article.quantité}</td><td>${article.montant}</td><td>${article.montantTotal}</td>
+                    </tr>  
+                </c:forEach>
+        </table>
+            <table>
+                <tr>
+                   <td>Montant de la commande : </td><td>${commande.montant} €</td>
+                </tr>
+            </table>
+            <button>Valider</button>
+        <a href="<c:url value="Panier"><c:param name="action" value="vider"/></c:url>">Vider le panier</a>
         </div> 
     </div> 
     <!-- Vue Footer -->

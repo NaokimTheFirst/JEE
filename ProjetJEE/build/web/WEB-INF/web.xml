@@ -33,14 +33,6 @@
         <url-pattern>/Accueil</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>AfficherCommande</servlet-name>
-        <servlet-class>Servlet.ServletAfficherCommande</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AfficherCommande</servlet-name>
-        <url-pattern>/AfficherCommande</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>Connection</servlet-name>
         <servlet-class>Servlet.SConnection</servlet-class>
     </servlet>

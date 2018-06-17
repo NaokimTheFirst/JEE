@@ -27,7 +27,7 @@ public class DAOClient {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        CloseBD();
+        BD.CloseConnection();
         return b;
     }
     
@@ -36,7 +36,7 @@ public class DAOClient {
         String requete = "INSERT INTO JEECLIENT (NOM,PRENOM,ADRESSE,TELEPHONE,MAIL)"
                 + " VALUES ('"+c.getNom()+"','"+c.getPrenom()+"','"+c.getAdresse()+"','"+c.getTelephone()+"','"+c.getEmail()+"')";
         ResultSet result = BD.FaireRequete(requete);
-        CloseBD();
+        BD.CloseConnection();
     }
     
     //Fonction qui crée un Bean Client en le copiant depuis la Base de Donnée
@@ -54,16 +54,7 @@ public class DAOClient {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        CloseBD();
+        BD.CloseConnection();
         return client;
-    }
-    
-    //Fonction qui ferme la connection
-    private static void CloseBD(){
-        try{
-            BD.CloseConnection();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
     }
 }

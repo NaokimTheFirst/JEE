@@ -1,16 +1,16 @@
 package Beans;
 
+import java.util.ArrayList;
+
 
 public class Commande {
     /* Propriétés du bean */
     private Client client;
+    private ArrayList<Article> article = new ArrayList<Article>();
     private String date;
-    private Double montant;
-    private String modePaiement;
-    private String statutPaiement;
-    private String modeLivraison;
+    private Float montant;
     private String statutLivraison;
-
+   
     public Client getClient() {
         return client;
     }
@@ -27,36 +27,15 @@ public class Commande {
         this.date = date;
     }
 
-    public Double getMontant() {
+    public Float getMontant() {
         return montant;
     }
 
-    public void setMontant( Double montant ) {
-        this.montant = montant;
-    }
-
-    public String getModePaiement() {
-        return modePaiement;
-    }
-
-    public void setModePaiement( String modePaiement ) {
-        this.modePaiement = modePaiement;
-    }
-
-    public String getStatutPaiement() {
-        return statutPaiement;
-    }
-
-    public void setStatutPaiement( String statutPaiement ) {
-        this.statutPaiement = statutPaiement;
-    }
-
-    public String getModeLivraison() {
-        return modeLivraison;
-    }
-
-    public void setModeLivraison( String modeLivraison ) {
-        this.modeLivraison = modeLivraison;
+    public void setMontant() {
+        montant = 0f;
+        for(Article a: article){
+            montant += a.getMontantTotal();
+        }
     }
 
     public String getStatutLivraison() {
@@ -65,5 +44,13 @@ public class Commande {
 
     public void setStatutLivraison( String statutLivraison ) {
         this.statutLivraison = statutLivraison;
+    }
+
+    public ArrayList<Article> getArticle() {
+        return article;
+    }
+
+    public void addArticle(Article article) {
+        this.article.add(article);
     }
 }
