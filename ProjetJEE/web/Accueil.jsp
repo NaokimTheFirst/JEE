@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!--pour pouvoir print en faisant <c : out> -->
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -78,6 +80,7 @@
                   </h4>
                   <h5>$24.99</h5>
                   <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                  <a href="<c:url value="Panier"><c:param name="article" value="Chaussette1"/></c:url>">Ajouter au panier</a>
                 </div>
                 <div class="card-footer">
                   <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
