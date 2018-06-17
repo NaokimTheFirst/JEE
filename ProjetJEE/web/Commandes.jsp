@@ -1,73 +1,37 @@
-<%@ page pageEncoding="UTF-8" %>
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> <!--pour pouvoir print en faisant <c : out> -->
+
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <title>Création d'une commande</title>
-        <link type="text/css" rel="stylesheet" href="CSS1.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Commandes</title>
+        
+         <!-- Bootstrap core CSS -->
+        <link href="style/bootstrap.min.css" rel="stylesheet">
+        <link href="style/bootstrap.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="style/shop-homepage.css" rel="stylesheet">
     </head>
     <body>
-        <div>
-            <form method="get" action="AfficherCommande">
-                <fieldset>
-                    <legend>Informations client</legend>
-    
-                    <label for="nomClient">Nom <span class="requis">*</span></label>
-                    <input type="text" id="nomClient" name="nomClient" value="" size="20" maxlength="20" />
-                    <br />
-                    
-                    <label for="prenomClient">Prénom </label>
-                    <input type="text" id="prenomClient" name="prenomClient" value="" size="20" maxlength="20" />
-                    <br />
-    
-                    <label for="adresseClient">Adresse de livraison <span class="requis">*</span></label>
-                    <input type="text" id="adresseClient" name="adresseClient" value="" size="20" maxlength="20" />
-                    <br />
-    
-                    <label for="telephoneClient">Numéro de téléphone <span class="requis">*</span></label>
-                    <input type="text" id="telephoneClient" name="telephoneClient" value="" size="20" maxlength="20" />
-                    <br />
-                    
-                    <label for="emailClient">Adresse email</label>
-                    <input type="email" id="emailClient" name="emailClient" value="" size="20" maxlength="60" />
-                    <br />
-                </fieldset>
-                <fieldset>
-                    <legend>Informations commande</legend>
-                    
-                    <label for="dateCommande">Date <span class="requis">*</span></label>
-                    <input type="text" id="dateCommande" name="dateCommande" value="" size="20" maxlength="20" disabled />
-                    <br />
-                    
-                    <label for="montantCommande">Montant <span class="requis">*</span></label>
-                    <input type="text" id="montantCommande" name="montantCommande" value="" size="20" maxlength="20" />
-                    <br />
-                    
-                    <label for="modePaiementCommande">Mode de paiement <span class="requis">*</span></label>
-                    <input type="text" id="modePaiementCommande" name="modePaiementCommande" value="" size="20" maxlength="20" />
-                    <br />
-                    
-                    <label for="statutPaiementCommande">Statut du paiement</label>
-                    <input type="text" id="statutPaiementCommande" name="statutPaiementCommande" value="" size="20" maxlength="20" />
-                    <br />
-                    
-                    <label for="modeLivraisonCommande">Mode de livraison <span class="requis">*</span></label>
-                    <input type="text" id="modeLivraisonCommande" name="modeLivraisonCommande" value="" size="20" maxlength="20" />
-                    <br />
-                    
-                    <label for="statutLivraisonCommande">Statut de la livraison</label>
-                    <input type="text" id="statutLivraisonCommande" name="statutLivraisonCommande" value="" size="20" maxlength="20" />
-                    <br />
-                </fieldset>
-                <input type="submit" value="Valider"  />
-                <input type="reset" value="Remettre à zéro" /> <br />
-            </form>
-            
-        </div>
-        
-
-    </body>
+    <!-- Vue Header -->
+    <jsp:include page="Header.jsp" />
+    <div class="container">
+        <div class="col-lg-9">
+            <table class="table table-striped">
+                <tr>
+                    <th>N° Commande :</th><th>Montant :</th><th>Date de la Commande:</th><th>Etat :</th><th>Date Livraison :</th>
+                </tr>
+                <c:forEach items="${commandes}" var="c">
+                <tr>
+                    <td>${c.idCommande}</td><td>${c.montant}</td><td>${c.date}</td><td>${c.statutLivraison}</td><td>${c.dateLivraison}</td>
+                </tr>
+                </c:forEach>
+        </table>
+        </div> 
+    </div> 
+    <!-- Vue Footer -->
+    <jsp:include page="Footer.jsp" />
+    </body> 
 </html>

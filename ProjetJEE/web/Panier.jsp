@@ -33,7 +33,7 @@
                    <td>Montant de la commande : </td><td>${commande.montant} €</td>
                 </tr>
             </table>
-            <button>Valider</button>
+        <a href="<c:url value="Commandes"><c:param name="action" value="ajouter"/></c:url>">Valider la Commande</a>
         <a href="<c:url value="Panier"><c:param name="action" value="vider"/></c:url>">Vider le panier</a>
         </div> 
     </div> 

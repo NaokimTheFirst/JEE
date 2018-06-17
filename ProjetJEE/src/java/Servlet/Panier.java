@@ -49,7 +49,6 @@ public class Panier extends HttpServlet {
         
         //Si l'utilisateur veut vider le panier
         if(request.getParameter("action")!=null && request.getParameter("action").equals("vider")){
-            System.out.println("vide");
             HttpSession session = request.getSession();
             session.setAttribute("commande", null);
             //On redirige l'utilisateur vers le panier sans l'article en paramètre à ajouter
@@ -63,13 +62,16 @@ public class Panier extends HttpServlet {
     
     //Fonction qui vérifie si l'article est déjà dans la liste et l'ajoute
     private void AddArticle(Commande commande,Article article){
+        //Pour chaque article de la commande
         for(Article a :commande.getArticle()){
+            //S'il correpond à l'aricle à ajouter augmente la quantité
             if(a.getIdarticle() == article.getIdarticle()){
                 AddQuantité(a,1);
                 commande.setMontant();
                 return;
             }
         }
+        //Sinon ajoute l'article à la liste
         commande.addArticle(article);
         commande.setMontant();
         return;

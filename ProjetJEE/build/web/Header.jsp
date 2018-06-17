@@ -25,8 +25,14 @@
                  <a class="nav-link" href="Client.jsp">S'inscrire</a>
             </li>
             </c:if>
-            <!--Affiche l'onglet "Profil" et "Se Déconnecter" si l'utilisateur est connecté-->
+            <!--Affiche l'onglet "Panier,"Profil" et "Se Déconnecter" si l'utilisateur est connecté-->
             <c:if test="${not empty sessionScope.client}">
+                <li class="nav-item">
+                  <a class="nav-link" href="Panier">Panier</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="Commandes">Commandes</a>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="AffichageClient.jsp">Profil</a>
                 </li>

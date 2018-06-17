@@ -29,7 +29,7 @@ public class SClient extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         /* Récupération des données saisies, envoyées en tant que paramètres de
-         * la requête GET générée à la validation du formulaire*/
+         * la requête Post générée à la validation du formulaire*/
         String nom = request.getParameter( "nomClient" );
         String prenom = request.getParameter( "prenomClient" );
         String adresse = request.getParameter( "adresseClient" );
