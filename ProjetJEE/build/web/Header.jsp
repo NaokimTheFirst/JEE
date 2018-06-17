@@ -19,7 +19,7 @@
             <!--Affiche l'onglet "S'inscrire" et "Se connecter" si l'utilisateur n'est pas connecté-->
             <c:if test="${empty sessionScope.client}">
             <li class="nav-item">
-                <a class="nav-link" href="Connection.jsp">Se Connecter</a>
+                <a class="nav-link" href="Connection">Se Connecter</a>
             </li>
             <li class="nav-item"> 
                  <a class="nav-link" href="Client.jsp">S'inscrire</a>

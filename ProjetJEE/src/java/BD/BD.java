@@ -31,7 +31,7 @@ private static Connection connection;
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -41,7 +41,7 @@ private static Connection connection;
             connection.close();
         } catch (Exception e)
         {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }

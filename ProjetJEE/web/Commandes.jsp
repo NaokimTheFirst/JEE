@@ -25,7 +25,7 @@
                 </tr>
                 <c:forEach items="${commandes}" var="c">
                 <tr>
-                    <td>${c.idCommande}</td><td>${c.montant}</td><td>${c.date}</td><td>${c.statutLivraison}</td><td>${c.dateLivraison}</td>
+                    <td>${c.idCommande}</td><td>${c.montant} €</td><td>${c.date}</td><td>${c.statutLivraison}</td><td>${c.dateLivraison}</td>
                 </tr>
                 </c:forEach>
         </table>

@@ -24,17 +24,19 @@
                     <table>
                     <tr>
                       <th><label for="nomClient">Nom</label></th>
-                      <td><input type="text" id="nomClient" name="nomClient" value="${client.nom}" size="20" maxlength="20" required/></td>
+                      <td><input type="text" id="nomClient" name="nomClient" value="${nom}" size="20" maxlength="20" required/></td>
                     </tr>
                     <tr>
                       <th><label for="prenomClient">Prénom </label></th>
-                      <td><input type="text" id="prenomClient" name="prenomClient" value="${client.prenom}" size="20" maxlength="20" required/></td>
+                      <td><input type="text" id="prenomClient" name="prenomClient" value="${prenom}" size="20" maxlength="20" required/></td>
                     </tr>
                     <tr>
                         <%-- Affichage de la chaîne "message" transmise par la servlet --%>
                         <th><p class="bg-warning">${ message }</p></th>
                     </tr>
                   </table>
+                <label for="memoire">Se souvenir de moi</label>
+                <input type="checkbox" id="memoire" name="memoire" />
                 </fieldset>
                 <input type="submit" value="Se Connecter"/>
                <input type="reset" value="Remettre à zéro"/>

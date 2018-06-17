@@ -30,7 +30,6 @@ public class Commande {
         }
         
         String newDate = annee+"-"+mois+"-"+jour;
-        System.out.println(newDate);
         this.dateLivraison = newDate;
     }
 
